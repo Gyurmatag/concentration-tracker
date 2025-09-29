@@ -52,7 +52,7 @@ class ConcentrationTracker {
     
     this.startBtn.disabled = true;
     this.stopBtn.disabled = false;
-    this.status.textContent = 'Focus session active - stay concentrated!';
+    this.status.textContent = 'Focus session active • Stay concentrated';
     
     // Update timer every second
     this.timerInterval = setInterval(() => {
@@ -82,7 +82,7 @@ class ConcentrationTracker {
     this.startBtn.disabled = false;
     this.stopBtn.disabled = true;
     this.sendBtn.disabled = false;
-    this.status.textContent = `Session completed! Duration: ${this.formatTime(duration)}`;
+    this.status.textContent = `Session completed • Duration: ${this.formatTime(duration)}`;
     
     clearInterval(this.timerInterval);
     
@@ -153,7 +153,7 @@ class ConcentrationTracker {
           this.isRunning = true;
           this.startBtn.disabled = true;
           this.stopBtn.disabled = false;
-          this.status.textContent = 'Focus session resumed';
+          this.status.textContent = 'Focus session resumed • Timer continues';
           
           // Resume timer
           this.timerInterval = setInterval(() => {

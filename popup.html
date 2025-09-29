@@ -5,114 +5,167 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Concentration Tracker</title>
   <style>
-    body {
-      width: 300px;
-      padding: 20px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 320px;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      background: #ffffff;
+      color: #000000;
+      line-height: 1.4;
     }
     
     .container {
-      text-align: center;
+      padding: 24px;
     }
     
-    h1 {
-      font-size: 18px;
-      margin-bottom: 20px;
+    .header {
       text-align: center;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 20px;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #E62B1E;
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+    
+    .tagline {
+      font-size: 12px;
+      color: #666666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 500;
+    }
+    
+    .timer-section {
+      text-align: center;
+      margin-bottom: 32px;
     }
     
     .timer-display {
-      font-size: 32px;
-      font-weight: bold;
+      font-size: 36px;
+      font-weight: 300;
+      color: #000000;
       margin: 20px 0;
-      padding: 15px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
+      padding: 20px;
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      font-family: 'Segoe UI', monospace;
+      letter-spacing: 2px;
     }
     
     .button-group {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin: 20px 0;
+      gap: 12px;
+      margin-bottom: 24px;
     }
     
     button {
-      padding: 12px 20px;
+      padding: 14px 20px;
       border: none;
-      border-radius: 8px;
-      font-size: 14px;
+      border-radius: 6px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      font-family: 'Segoe UI', sans-serif;
     }
     
     .start-btn {
-      background: #4CAF50;
+      background: #E62B1E;
       color: white;
+      font-weight: 700;
     }
     
     .start-btn:hover {
-      background: #45a049;
-      transform: translateY(-2px);
+      background: #d0251a;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(230, 43, 30, 0.3);
     }
     
     .stop-btn {
-      background: #f44336;
+      background: #6c757d;
       color: white;
+      font-weight: 700;
     }
     
     .stop-btn:hover {
-      background: #da190b;
-      transform: translateY(-2px);
+      background: #5a6268;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
     }
     
     .send-btn {
-      background: #2196F3;
+      background: #000000;
       color: white;
+      font-weight: 700;
     }
     
     .send-btn:hover {
-      background: #1976D2;
-      transform: translateY(-2px);
+      background: #333333;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
     
     .info-btn {
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: transparent;
+      color: #666666;
+      border: 1px solid #e9ecef;
+      font-weight: 500;
     }
     
     .info-btn:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: translateY(-2px);
+      background: #f8f9fa;
+      color: #000000;
+      border-color: #dee2e6;
     }
     
     button:disabled {
-      opacity: 0.6;
+      opacity: 0.5;
       cursor: not-allowed;
       transform: none;
+      box-shadow: none;
     }
     
     .status {
       font-size: 12px;
-      margin-top: 10px;
-      opacity: 0.8;
+      color: #666666;
+      text-align: center;
+      margin-bottom: 16px;
+      font-weight: 500;
     }
     
     .session-count {
-      font-size: 14px;
-      margin-top: 15px;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 5px;
+      font-size: 12px;
+      color: #666666;
+      text-align: center;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      border: 1px solid #e9ecef;
+      font-weight: 500;
+    }
+    
+    .category {
+      font-size: 10px;
+      color: #E62B1E;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
     
     .info-modal {
@@ -122,7 +175,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.5);
       z-index: 1000;
     }
     
@@ -132,40 +185,101 @@
       left: 50%;
       transform: translate(-50%, -50%);
       background: white;
-      color: #333;
-      padding: 30px;
-      border-radius: 15px;
+      color: #000000;
+      padding: 32px;
+      border-radius: 8px;
       max-width: 400px;
       max-height: 80vh;
       overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .info-content h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 16px;
+    }
+    
+    .info-content h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #E62B1E;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 20px 0 8px 0;
+    }
+    
+    .info-content p {
+      font-size: 13px;
+      color: #666666;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    
+    .info-content ol {
+      margin-left: 16px;
+      margin-bottom: 12px;
+    }
+    
+    .info-content li {
+      font-size: 13px;
+      color: #666666;
+      margin-bottom: 8px;
+      line-height: 1.5;
     }
     
     .close-btn {
       position: absolute;
-      top: 10px;
-      right: 15px;
+      top: 16px;
+      right: 20px;
       background: none;
       border: none;
       font-size: 24px;
       cursor: pointer;
-      color: #666;
+      color: #666666;
+      font-weight: 300;
+    }
+    
+    .close-btn:hover {
+      color: #000000;
+    }
+    
+    .experiment-badge {
+      display: inline-block;
+      background: #E62B1E;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>🎯 Concentration Tracker</h1>
-    
-    <div class="timer-display" id="timerDisplay">00:00:00</div>
-    
-    <div class="button-group">
-      <button id="startBtn" class="start-btn">▶ Start Focus</button>
-      <button id="stopBtn" class="stop-btn" disabled>⏹ Stop</button>
-      <button id="sendBtn" class="send-btn" disabled>📤 Send Data</button>
-      <button id="infoBtn" class="info-btn">ℹ️ About</button>
+    <div class="header">
+      <div class="logo">TED</div>
+      <div class="tagline">Ideas change everything</div>
+      <div class="experiment-badge">Concentration Experiment</div>
     </div>
     
-    <div class="status" id="status">Ready to start tracking</div>
+    <div class="timer-section">
+      <div class="category">Focus Session</div>
+      <div class="timer-display" id="timerDisplay">00:00:00</div>
+    </div>
+    
+    <div class="button-group">
+      <button id="startBtn" class="start-btn">Start Focus</button>
+      <button id="stopBtn" class="stop-btn" disabled>Stop Session</button>
+      <button id="sendBtn" class="send-btn" disabled>Send Data</button>
+      <button id="infoBtn" class="info-btn">About Experiment</button>
+    </div>
+    
+    <div class="status" id="status">Ready to start tracking your focus time</div>
     <div class="session-count" id="sessionCount">Sessions today: 0</div>
   </div>
   
@@ -173,27 +287,27 @@
   <div id="infoModal" class="info-modal">
     <div class="info-content">
       <button class="close-btn" id="closeInfo">&times;</button>
-      <h2>About the Concentration Experiment</h2>
-      <p>Welcome to our TED concentration tracking experiment! 🧠</p>
+      <h2>The Concentration Experiment</h2>
+      <p>Welcome to our community science experiment on attention and focus.</p>
       
       <h3>What is this?</h3>
-      <p>This is a community science experiment to understand how long people can maintain focus on tasks without getting distracted.</p>
+      <p>This is a research project to understand how long people can maintain focus on tasks without getting distracted by digital interruptions.</p>
       
       <h3>How to participate:</h3>
       <ol>
         <li><strong>Start:</strong> Click "Start Focus" when you begin a task</li>
         <li><strong>Focus:</strong> Work on your task without checking notifications, emails, or social media</li>
-        <li><strong>Stop:</strong> Click "Stop" when you get distracted or finish</li>
+        <li><strong>Stop:</strong> Click "Stop Session" when you get distracted or finish</li>
         <li><strong>Send:</strong> Submit your data anonymously to help our research</li>
       </ol>
       
-      <h3>Privacy:</h3>
-      <p>All data is collected anonymously. We only track timing information, no personal details.</p>
+      <h3>Privacy</h3>
+      <p>All data is collected anonymously. We only track timing information, no personal details or browsing history.</p>
       
-      <h3>Purpose:</h3>
-      <p>This research helps us understand attention patterns and could lead to better productivity tools and insights about digital wellness.</p>
+      <h3>Purpose</h3>
+      <p>This research helps us understand attention patterns and could lead to better productivity tools and insights about digital wellness in our modern world.</p>
       
-      <p><em>Thank you for participating in this community science project! 🙏</em></p>
+      <p><em>Thank you for participating in this community science project.</em></p>
     </div>
   </div>
   
