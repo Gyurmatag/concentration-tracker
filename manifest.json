@@ -1,0 +1,13 @@
+{
+  "name": "Concentration Tracker",
+  "description": "Track your focus time for the TED concentration experiment",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "permissions": [
+    "storage"
+  ]
+}

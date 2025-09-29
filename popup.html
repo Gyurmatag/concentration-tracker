@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concentration Tracker</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      margin: 0;
+    }
+    
+    .container {
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .timer-display {
+      font-size: 32px;
+      font-weight: bold;
+      margin: 20px 0;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .start-btn {
+      background: #4CAF50;
+      color: white;
+    }
+    
+    .start-btn:hover {
+      background: #45a049;
+      transform: translateY(-2px);
+    }
+    
+    .stop-btn {
+      background: #f44336;
+      color: white;
+    }
+    
+    .stop-btn:hover {
+      background: #da190b;
+      transform: translateY(-2px);
+    }
+    
+    .send-btn {
+      background: #2196F3;
+      color: white;
+    }
+    
+    .send-btn:hover {
+      background: #1976D2;
+      transform: translateY(-2px);
+    }
+    
+    .info-btn {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .info-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .status {
+      font-size: 12px;
+      margin-top: 10px;
+      opacity: 0.8;
+    }
+    
+    .session-count {
+      font-size: 14px;
+      margin-top: 15px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+    }
+    
+    .info-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+    }
+    
+    .info-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      color: #333;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 Concentration Tracker</h1>
+    
+    <div class="timer-display" id="timerDisplay">00:00:00</div>
+    
+    <div class="button-group">
+      <button id="startBtn" class="start-btn">▶ Start Focus</button>
+      <button id="stopBtn" class="stop-btn" disabled>⏹ Stop</button>
+      <button id="sendBtn" class="send-btn" disabled>📤 Send Data</button>
+      <button id="infoBtn" class="info-btn">ℹ️ About</button>
+    </div>
+    
+    <div class="status" id="status">Ready to start tracking</div>
+    <div class="session-count" id="sessionCount">Sessions today: 0</div>
+  </div>
+  
+  <!-- Info Modal -->
+  <div id="infoModal" class="info-modal">
+    <div class="info-content">
+      <button class="close-btn" id="closeInfo">&times;</button>
+      <h2>About the Concentration Experiment</h2>
+      <p>Welcome to our TED concentration tracking experiment! 🧠</p>
+      
+      <h3>What is this?</h3>
+      <p>This is a community science experiment to understand how long people can maintain focus on tasks without getting distracted.</p>
+      
+      <h3>How to participate:</h3>
+      <ol>
+        <li><strong>Start:</strong> Click "Start Focus" when you begin a task</li>
+        <li><strong>Focus:</strong> Work on your task without checking notifications, emails, or social media</li>
+        <li><strong>Stop:</strong> Click "Stop" when you get distracted or finish</li>
+        <li><strong>Send:</strong> Submit your data anonymously to help our research</li>
+      </ol>
+      
+      <h3>Privacy:</h3>
+      <p>All data is collected anonymously. We only track timing information, no personal details.</p>
+      
+      <h3>Purpose:</h3>
+      <p>This research helps us understand attention patterns and could lead to better productivity tools and insights about digital wellness.</p>
+      
+      <p><em>Thank you for participating in this community science project! 🙏</em></p>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
