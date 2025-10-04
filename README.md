@@ -1,6 +1,6 @@
 # Concentration Tracker
 
-A Chrome extension for tracking focus time as part of a TED community science experiment on attention and concentration.
+A Chrome extension for tracking focus time as part of a TED and Shiwaforce collaboration for community science research on attention and concentration.
 
 ## Features
 
@@ -22,7 +22,16 @@ A Chrome extension for tracking focus time as part of a TED community science ex
 
 ## About the Experiment
 
-This extension is part of a community science experiment conducted at TED to understand how long people can maintain focus on tasks without getting distracted. The data collected helps researchers understand attention patterns and could lead to better productivity tools and insights about digital wellness.
+This extension is part of a community science experiment conducted as a collaboration between TED and Shiwaforce to understand how long people can maintain focus on tasks without getting distracted. The data collected helps researchers understand attention patterns and could lead to better productivity tools and insights about digital wellness.
+
+### Collaboration Partners
+
+- **TED**: Bringing expertise in ideas, community science, and research methodology
+- **Shiwaforce**: Providing digital innovation capabilities and technical implementation
+
+Learn more about our partners:
+- [TED](https://www.ted.com/) - Ideas worth spreading
+- [Shiwaforce](https://www.shiwaforce.com/) - Digital transformation and innovation
 
 ## Privacy
 
@@ -47,12 +56,23 @@ This extension is part of a community science experiment conducted at TED to und
 - Modern JavaScript ES6+ features
 - No external dependencies
 
+## Google Sheets Integration
+
+The extension now supports automatic data submission to Google Sheets for research data collection. See `GOOGLE_SHEETS_SETUP.md` for detailed setup instructions.
+
+**Features:**
+- ✅ Anonymous data collection
+- ✅ Automatic session tracking
+- ✅ Real-time data submission
+- ✅ No user authentication required
+- ✅ Research-ready data format
+
 ## Future Features
 
-- Google Sheets integration for automatic data submission
-- Detailed analytics and insights
+- Detailed analytics dashboard
 - Focus session categories
 - Break reminders
+- Advanced data visualization
 - Export to CSV/JSON
 
 ## Contributing

@@ -1,0 +1,110 @@
+{
+  "app": {
+    "title": "Fókuszkövetés",
+    "tagline": "Ideas change everything",
+    "experimentBadge": "Figyelem figyelő kísérlet"
+  },
+  "ui": {
+    "category": "Figyelem stopper",
+    "timerDisplay": "00:00:00",
+    "buttons": {
+      "startFocus": "Start",
+      "stopSession": "Stop/Elkalandoztam",
+      "sendData": "Adatok küldése",
+      "aboutExperiment": "A kísérletről",
+      "sending": "Küldés...",
+      "dataSent": "Elküldve ✓",
+      "confirmEstimation": "Megerősítés",
+      "skipEstimation": "Kihagyás"
+    },
+    "status": {
+      "ready": "Készen állsz a fókuszidőd mérésére ",
+      "active": "Fókuszmérés • Koncentrálj",
+      "resumed": "Fókuszmérés • Időmérés folyamatban",
+      "completed": "Munkamenet vége • Időtartam: {duration}",
+      "noData": "Még nincs küldhető adat",
+      "sending": "Adatok küldése az adatbázisba...",
+      "success": "Sikeres küldés! {count} munkamenet elküldve.",
+      "error": "Hiba: {error}",
+      "notConfigured": "Google Apps Script URL nincs jól beállítva"
+    },
+    "sessionCount": "Mai munkamenetek: {count}",
+    "modal": {
+      "close": "×"
+    },
+    "prediction": {
+      "title": "Mielőtt elkezded...",
+      "question": "Szerinted meddig tudod tartani a fókuszt?",
+      "placeholderMinutes": "Perc",
+      "placeholderSeconds": "Másodperc",
+      "helper": "Tippelj bátran – nincs jó vagy rossz válasz!"
+    },
+    "estimation": {
+      "title": "Fókusz elvesztése",
+      "actualDuration": "Mért fókuszidő: {duration}",
+      "question": "Szerinted igazából mikor kalandozott el a figyelmed?",
+      "helper": "Becsüld meg, mennyi ideig lehettél fókuszált",
+      "placeholderMinutes": "Perc",
+      "placeholderSeconds": "Másodperc"
+    },
+    "sessionDetails": {
+      "predicted": "Tipp: {time}",
+      "actual": "Mért: {time}",
+      "estimated": "Becsült fókuszidő: {time}",
+      "noEstimation": "Nem érkezett becslés"
+    }
+  },
+  "infoModal": {
+    "title": "Fókuszkövetés",
+    "welcome": "Üdv a fókuszkövetésről, ha úgy tetszik a figyelem figyelésre létrehozott közösségi tudományos kísérletben, amely a TEDxDanubia és a Shiwaforce együttműködésében jött létre.",
+    "sections": {
+      "whatIsThis": {
+        "title": "Mire jó ez?",
+        "description": "Egy közösségi kísérlet annak megértésére, hogy igazából mennyi ideig tudjuk a figyelmünket fókuszálni, megszakítások nélkül egy dolgon tartani."
+      },
+      "howToParticipate": {
+        "title": "Hogyan lehet benne részt venni:",
+        "steps": [
+          {
+            "action": "Indítás:",
+            "description": "Kattint a \"Start\" gombra, ha elkezdesz egy feladatot"
+          },
+          {
+            "action": "Fókuszálj:",
+            "description": "Koncentrálj a feladatra, értesítések - e-mailek olvasása, telefon babrálás, közösségi média lapozgatás vagy akár csak fejbeni elkalandozások nélkül "
+          },
+          {
+            "action": "Leállítás:",
+            "description": "Click \"Stop/Elkalandoztam\" mikor kizökkensz vagy befejezted a feladatot"
+          },
+          {
+            "action": "Küldés:",
+            "description": "Küld el névtelenül a méréseid, hogy segítsd a kutatást"
+          }
+        ]
+      },
+      "privacy": {
+        "title": "Adatvédelem",
+        "description": "Nem gyűjtünk személyes adatokat vagy böngészési előzményeket. Pusztán a figyelem stopper által mért időadatokat rögzítjük."
+      },
+      "purpose": {
+        "title": "Célunk",
+        "description": "Kutatásunk célja, hogy tisztábban lássuk, valójában mennyi ideig tudjuk koncentrálni, egy dolgon tartani a figyelmünket. A figyelem stopperrel ráadásul saját figyelmedet is edzheted, így nemcsak a kísérletnek segítesz, hanem magadnak is."
+      },
+      "collaboration": {
+        "title": "Az együttműködésről",
+        "description": "A közösségi tudományos kísérlet a TEDxDanubia ötlete alapján, a nyilvánosság bevonásával és a Shiwaforce digitális innovációjának eredményeként jöhetett létre. "
+      }
+    },
+    "footer": "Köszönjük, hogy részt veszel ebben a közösségi tudományos kísérletben."
+  },
+  "alerts": {
+    "configurationRequired": "Kérlek először állítsd be a Google Apps Script URL-t!\n\nAz utasítások a kódban olvashatók.",
+    "sendDataError": "Az adatok küldése sikertelen:\n\n{error}\n\nEllenőrizd az internetkapcsolatod és próbáld újra."
+  },
+  "technical": {
+    "experimentVersion": "1.0",
+    "httpError": "HTTP {status}: {statusText}",
+    "unknownError": "Ismeretlen hiba"
+  }
+ } 

@@ -5,6 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Concentration Tracker</title>
   <style>
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --text-primary: #000000;
+      --text-secondary: #666666;
+      --text-tertiary: #333333;
+      --border-light: #f0f0f0;
+      --border-medium: #e9ecef;
+      --border-dark: #dee2e6;
+      --separator-color: #cccccc;
+      --ted-red: #E62B1E;
+      --ted-red-dark: #d0251a;
+      --button-gray: #6c757d;
+      --button-gray-hover: #5a6268;
+      --button-black: #000000;
+      --button-black-hover: #333333;
+      --shiwaforce-svg-fill: #333333;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #2a2a2a;
+        --text-primary: #ffffff;
+        --text-secondary: #b0b0b0;
+        --text-tertiary: #e0e0e0;
+        --border-light: #333333;
+        --border-medium: #404040;
+        --border-dark: #4a4a4a;
+        --separator-color: #666666;
+        --ted-red: #E62B1E;
+        --ted-red-dark: #ff3d2e;
+        --button-gray: #9ca3af;
+        --button-gray-hover: #b0b7c4;
+        --button-black: #4b5563;
+        --button-black-hover: #6b7280;
+        --shiwaforce-svg-fill: #ffffff;
+      }
+    }
+    
     * {
       margin: 0;
       padding: 0;
@@ -12,10 +52,10 @@
     }
     
     body {
-      width: 320px;
+      width: 400px;
       font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-      background: #ffffff;
-      color: #000000;
+      background: var(--bg-primary);
+      color: var(--text-primary);
       line-height: 1.4;
     }
     
@@ -26,21 +66,60 @@
     .header {
       text-align: center;
       margin-bottom: 24px;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid var(--border-light);
       padding-bottom: 20px;
+    }
+    
+    .logos-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 8px;
     }
     
     .logo {
       font-size: 24px;
       font-weight: bold;
-      color: #E62B1E;
-      margin-bottom: 4px;
+      color: var(--ted-red);
       letter-spacing: -0.5px;
+    }
+    
+    .tedx-logo {
+      height: 24px;
+      width: auto;
+      content: url('tedxdanubialogoforbright.jpg');
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .tedx-logo {
+        content: url('tedxdanubialogofordark.png');
+      }
+    }
+    
+    .logo-separator {
+      color: var(--separator-color);
+      font-size: 18px;
+      font-weight: 300;
+    }
+    
+    .shiwaforce-logo {
+      height: 24px;
+      width: auto;
+    }
+    
+    .shiwaforce-logo svg {
+      height: 100%;
+      width: auto;
+    }
+    
+    .shiwaforce-logo svg path {
+      fill: var(--shiwaforce-svg-fill);
     }
     
     .tagline {
       font-size: 12px;
-      color: #666666;
+      color: var(--text-secondary);
       text-transform: uppercase;
       letter-spacing: 1px;
       font-weight: 500;
@@ -54,11 +133,11 @@
     .timer-display {
       font-size: 36px;
       font-weight: 300;
-      color: #000000;
+      color: var(--text-primary);
       margin: 20px 0;
       padding: 20px;
-      background: #f8f9fa;
-      border: 1px solid #e9ecef;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-medium);
       border-radius: 8px;
       font-family: 'Segoe UI', monospace;
       letter-spacing: 2px;
@@ -85,52 +164,52 @@
     }
     
     .start-btn {
-      background: #E62B1E;
+      background: var(--ted-red);
       color: white;
       font-weight: 700;
     }
     
     .start-btn:hover {
-      background: #d0251a;
+      background: var(--ted-red-dark);
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(230, 43, 30, 0.3);
     }
     
     .stop-btn {
-      background: #6c757d;
+      background: var(--button-gray);
       color: white;
       font-weight: 700;
     }
     
     .stop-btn:hover {
-      background: #5a6268;
+      background: var(--button-gray-hover);
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
     }
     
     .send-btn {
-      background: #000000;
+      background: var(--button-black);
       color: white;
       font-weight: 700;
     }
     
     .send-btn:hover {
-      background: #333333;
+      background: var(--button-black-hover);
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
     
     .info-btn {
       background: transparent;
-      color: #666666;
-      border: 1px solid #e9ecef;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-medium);
       font-weight: 500;
     }
     
     .info-btn:hover {
-      background: #f8f9fa;
-      color: #000000;
-      border-color: #dee2e6;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border-color: var(--border-dark);
     }
     
     button:disabled {
@@ -142,7 +221,7 @@
     
     .status {
       font-size: 12px;
-      color: #666666;
+      color: var(--text-secondary);
       text-align: center;
       margin-bottom: 16px;
       font-weight: 500;
@@ -150,18 +229,89 @@
     
     .session-count {
       font-size: 12px;
-      color: #666666;
+      color: var(--text-secondary);
       text-align: center;
       padding: 12px;
-      background: #f8f9fa;
+      background: var(--bg-secondary);
       border-radius: 6px;
-      border: 1px solid #e9ecef;
+      border: 1px solid var(--border-medium);
       font-weight: 500;
+    }
+    
+    .session-details {
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-align: left;
+      padding: 12px;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+      border: 1px solid var(--border-medium);
+      margin-bottom: 16px;
+      display: none;
+    }
+    
+    .session-details.visible {
+      display: block;
+    }
+    
+    .session-details-title {
+      font-weight: 700;
+      color: var(--ted-red);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .session-details-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      line-height: 1.6;
+    }
+    
+    .session-details-label {
+      font-weight: 600;
+      color: var(--text-tertiary);
+    }
+    
+    .session-details-value {
+      color: var(--text-secondary);
+    }
+    
+    .time-input-group {
+      display: flex;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    
+    .time-input-wrapper {
+      flex: 1;
+    }
+    
+    .time-input-wrapper label {
+      display: block;
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .time-input-wrapper input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 2px solid var(--border-medium);
+      border-radius: 6px;
+      box-sizing: border-box;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
     }
     
     .category {
       font-size: 10px;
-      color: #E62B1E;
+      color: var(--ted-red);
       text-transform: uppercase;
       letter-spacing: 1px;
       font-weight: 700;
@@ -184,37 +334,39 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: white;
-      color: #000000;
+      background: var(--bg-primary);
+      color: var(--text-primary);
       padding: 32px;
       border-radius: 8px;
-      max-width: 400px;
+      max-width: 500px;
+      width: 90%;
       max-height: 80vh;
       overflow-y: auto;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      position: relative;
     }
     
     .info-content h2 {
       font-size: 20px;
       font-weight: 700;
-      color: #000000;
+      color: var(--text-primary);
       margin-bottom: 16px;
     }
     
     .info-content h3 {
       font-size: 14px;
       font-weight: 700;
-      color: #E62B1E;
+      color: var(--ted-red);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin: 20px 0 8px 0;
     }
     
     .info-content p {
-      font-size: 13px;
-      color: #666666;
-      margin-bottom: 12px;
-      line-height: 1.5;
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      line-height: 1.6;
     }
     
     .info-content ol {
@@ -223,31 +375,47 @@
     }
     
     .info-content li {
-      font-size: 13px;
-      color: #666666;
-      margin-bottom: 8px;
-      line-height: 1.5;
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+      line-height: 1.6;
     }
     
     .close-btn {
       position: absolute;
       top: 16px;
-      right: 20px;
-      background: none;
-      border: none;
-      font-size: 24px;
+      right: 16px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-medium);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
       cursor: pointer;
-      color: #666666;
-      font-weight: 300;
+      color: var(--text-secondary);
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      z-index: 20;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
     
     .close-btn:hover {
-      color: #000000;
+      background: var(--border-medium);
+      color: var(--text-primary);
+      border-color: var(--border-dark);
+      transform: scale(1.1);
+    }
+    
+    .close-btn:active {
+      transform: scale(0.95);
     }
     
     .experiment-badge {
       display: inline-block;
-      background: #E62B1E;
+      background: var(--ted-red);
       color: white;
       padding: 4px 8px;
       border-radius: 4px;
@@ -257,18 +425,56 @@
       letter-spacing: 0.5px;
       margin-bottom: 16px;
     }
+    
+    .prediction-helper {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+    
+    .full-width {
+      width: 100%;
+    }
+    
+    .actual-duration-text {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ted-red);
+      margin-bottom: 16px;
+    }
+    
+    .estimation-helper {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    
+    .button-row {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .flex-1 {
+      flex: 1;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <div class="logo">TED</div>
-      <div class="tagline">Ideas change everything</div>
-      <div class="experiment-badge">Concentration Experiment</div>
+      <div class="logos-container">
+        <img src="tedxdanubialogoforbright.jpg" alt="TEDxDanubia" class="tedx-logo">
+        <div class="logo-separator">×</div>
+        <div class="shiwaforce-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="122" height="32" viewBox="0 0 122 32" fill="none"><path d="M41.8207 15.7224C41.2642 15.3113 40.5874 15.0985 39.8973 15.1177C39.1234 15.1177 38.7283 15.4003 38.7283 15.798C38.7283 16.1956 39.1398 16.4914 39.93 16.5078C41.5235 16.5571 43.4469 16.8891 43.4632 19.137C43.4796 20.4516 42.4836 21.8812 39.9137 21.8812C38.5134 21.9235 37.1497 21.4276 36.0996 20.4943L37.1184 18.8051C37.9096 19.475 38.9124 19.8386 39.9463 19.8305C40.6353 19.8469 41.1807 19.5676 41.1643 19.137C41.1643 18.7558 40.8835 18.4403 39.7831 18.4074C38.2679 18.3417 36.3804 17.714 36.3804 15.7947C36.3804 13.9411 38.1209 13.1655 39.881 13.1655C41.0123 13.1113 42.122 13.4906 42.9865 14.227L41.8207 15.7224Z" fill="#333333"></path><path d="M47.0889 9.99731V14.4143C47.6852 13.6632 48.5995 13.2403 49.5543 13.2739C51.4613 13.2739 52.7904 14.2829 52.7904 17.1947V21.5788H50.4262V17.2111C50.4262 16.0674 49.8155 15.4397 48.8783 15.4397C47.8987 15.4397 47.0725 16.1332 47.0725 17.4412V21.5788H44.7051V9.99731H47.0889Z" fill="#333333"></path><path d="M56.9981 11.2364C56.9981 13.0242 54.3008 13.0242 54.3008 11.2364C54.3008 9.44854 56.9981 9.45182 56.9981 11.2364ZM54.4673 13.389V21.5789H56.8348V13.389H54.4673Z" fill="#333333"></path><path d="M65.4689 13.4056L67.0298 18.618L67.5555 16.7611L68.6919 13.4023H71.337L68.3295 21.6185H65.9783L64.5317 17.5301L63.1015 21.6185H60.7373L57.7461 13.4023H60.3911L61.5242 16.7611L62.0434 18.618L63.6043 13.4056H65.4689Z" fill="#333333"></path><path d="M78.2575 13.4054H80.478V21.5788H78.3391L78.2085 20.5534C77.6664 21.4112 76.4974 21.7431 75.7104 21.7596C73.2777 21.776 71.5176 20.1886 71.5176 17.4872C71.5176 14.7857 73.3756 13.1852 75.7627 13.2148C76.7815 13.2148 77.722 13.6124 78.1628 14.342L78.2575 13.4054ZM73.885 17.4905C73.8557 18.0693 74.0712 18.6337 74.4781 19.0438C74.885 19.454 75.4454 19.6717 76.0207 19.6431C76.5805 19.6608 77.124 19.4515 77.5292 19.0623C77.9344 18.673 78.1674 18.1363 78.1759 17.5726C78.1759 16.3993 77.4346 15.3247 76.0207 15.3247C75.4439 15.2989 74.8831 15.5193 74.4764 15.9317C74.0698 16.3442 73.855 16.9102 73.885 17.4905Z" fill="#333333"></path><path d="M83.0605 21.5789V15.5548H81.6367V13.5534H83.067V13.0735C83.067 10.7073 84.7781 9.78697 86.3553 9.78697C87.1596 9.78109 87.9463 10.0243 88.6085 10.4838L87.7954 12.1599C87.4428 11.9479 87.0403 11.8345 86.6296 11.8313C85.921 11.8313 85.4279 12.2256 85.4279 13.0867V13.5665H87.6811V15.568H85.4279V21.5789H83.0605Z" fill="#333333"></path><path d="M88.2656 17.507C88.2656 15.0422 90.0094 13.2346 92.7034 13.2346C95.3974 13.2346 97.1575 15.0553 97.1575 17.507C97.1575 19.9587 95.466 21.7597 92.7034 21.7597C89.9408 21.7597 88.2656 19.9719 88.2656 17.507ZM94.7574 17.507C94.7574 16.4817 94.1337 15.3577 92.7034 15.3577C91.2731 15.3577 90.6657 16.4817 90.6657 17.507C90.6657 18.5324 91.2731 19.6432 92.7034 19.6432C94.1337 19.6432 94.7574 18.5817 94.7574 17.507Z" fill="#333333"></path><path d="M100.681 13.4219L100.864 14.3158C101.349 13.5976 102.17 13.1836 103.032 13.2214C103.766 13.2028 104.478 13.4701 105.021 13.9674L104.041 15.8538C103.663 15.5744 103.204 15.4287 102.735 15.4397C102.227 15.4092 101.731 15.5975 101.37 15.9576C101.009 16.3176 100.818 16.8154 100.844 17.3262V21.5789H98.4766V13.4219H100.681Z" fill="#333333"></path><path d="M112.659 20.5043C111.81 21.3334 110.667 21.7856 109.485 21.7597C107.12 21.7597 105.047 20.4451 105.047 17.507C105.047 14.7628 107.104 13.2346 109.468 13.2346C110.654 13.2346 111.591 13.5008 112.407 14.3619L111.101 15.8671C110.66 15.5375 110.122 15.3683 109.573 15.3873C109.002 15.3532 108.443 15.5644 108.035 15.9685C107.627 16.3726 107.409 16.9317 107.434 17.507C107.419 18.0645 107.635 18.603 108.031 18.9929C108.427 19.3828 108.967 19.5888 109.521 19.5611C110.12 19.5564 110.698 19.3387 111.153 18.9465L112.659 20.5043Z" fill="#333333"></path><path d="M115.36 18.2695C115.477 19.0615 116.232 19.7188 117.557 19.7188C118.312 19.7426 119.052 19.5112 119.66 19.0615L120.993 20.5503C120.121 21.4081 118.707 21.7564 117.508 21.7564C114.57 21.7564 112.953 20.0212 112.953 17.4051C112.953 14.9238 114.615 13.1853 117.26 13.1853C120.023 13.1853 121.832 14.9238 121.323 18.2662L115.36 18.2695ZM119.21 16.5309C119.158 15.637 118.253 15.2163 117.267 15.2163C116.281 15.2163 115.592 15.7126 115.36 16.5309H119.21Z" fill="#333333"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7363 31.675C24.4272 31.675 31.4725 24.5843 31.4725 15.8375C31.4725 7.09069 24.4272 0 15.7363 0C7.04537 0 0 7.09069 0 15.8375C0 24.5843 7.04537 31.675 15.7363 31.675ZM10.2814 16.4093C9.19716 16.408 8.25907 15.6496 8.02403 14.5843C7.789 13.5191 8.31998 12.4324 9.30175 11.9693L20.2084 6.85227C20.958 6.50003 21.8373 6.57701 22.5152 7.0542C23.1931 7.5314 23.5665 8.33632 23.4948 9.16576C23.4231 9.9952 22.9172 10.7231 22.1677 11.0754L11.2578 16.1924C10.9522 16.3364 10.6188 16.4104 10.2814 16.4093ZM8.02403 23.2146C8.25907 24.2799 9.19716 25.0383 10.2814 25.0396C10.6188 25.0407 10.9522 24.9666 11.2578 24.8227L22.1677 19.7024C23.3255 19.1579 23.8255 17.7718 23.2845 16.6065C22.7434 15.4412 21.3662 14.938 20.2084 15.4825L9.30175 20.5996C8.31998 21.0626 7.789 22.1494 8.02403 23.2146Z" fill="#333333"></path></svg>
+        </div>
+      </div>
+      <div class="tagline" id="tagline">Ideas change everything</div>
+      <div class="experiment-badge" id="experimentBadge">Concentration Experiment</div>
     </div>
     
     <div class="timer-section">
-      <div class="category">Focus Session</div>
+      <div class="category" id="category">Focus Session</div>
       <div class="timer-display" id="timerDisplay">00:00:00</div>
     </div>
     
@@ -280,6 +486,23 @@
     </div>
     
     <div class="status" id="status">Ready to start tracking your focus time</div>
+    
+    <div id="sessionDetails" class="session-details">
+      <div class="session-details-title">Last Session</div>
+      <div class="session-details-row">
+        <span class="session-details-label" id="predictedLabel">Predicted:</span>
+        <span class="session-details-value" id="predictedValue">--:--</span>
+      </div>
+      <div class="session-details-row">
+        <span class="session-details-label" id="actualLabel">Actual:</span>
+        <span class="session-details-value" id="actualValue">--:--</span>
+      </div>
+      <div class="session-details-row">
+        <span class="session-details-label" id="estimatedLabel">Estimated Focus:</span>
+        <span class="session-details-value" id="estimatedValue">--:--</span>
+      </div>
+    </div>
+    
     <div class="session-count" id="sessionCount">Sessions today: 0</div>
   </div>
   
@@ -288,7 +511,7 @@
     <div class="info-content">
       <button class="close-btn" id="closeInfo">&times;</button>
       <h2>The Concentration Experiment</h2>
-      <p>Welcome to our community science experiment on attention and focus.</p>
+      <p>Welcome to our community science experiment on attention and focus, a collaboration between TED and Shiwaforce.</p>
       
       <h3>What is this?</h3>
       <p>This is a research project to understand how long people can maintain focus on tasks without getting distracted by digital interruptions.</p>
@@ -307,7 +530,54 @@
       <h3>Purpose</h3>
       <p>This research helps us understand attention patterns and could lead to better productivity tools and insights about digital wellness in our modern world.</p>
       
+      <h3>Collaboration</h3>
+      <p>This experiment is a collaboration between <strong>TED</strong> and <strong>Shiwaforce</strong>, combining TED's expertise in ideas and community science with Shiwaforce's digital innovation capabilities.</p>
+      
       <p><em>Thank you for participating in this community science project.</em></p>
+    </div>
+  </div>
+  
+  <!-- Prediction Modal -->
+  <div id="predictionModal" class="info-modal">
+    <div class="info-content">
+      <h2 id="predictionTitle">Before you start...</h2>
+      <p id="predictionQuestion">How long do you think you can stay focused?</p>
+      <div class="time-input-group">
+        <div class="time-input-wrapper">
+          <label id="predictionMinutesLabel">Minutes</label>
+          <input type="number" id="predictionMinutes" min="0" max="240" placeholder="0">
+        </div>
+        <div class="time-input-wrapper">
+          <label id="predictionSecondsLabel">Seconds</label>
+          <input type="number" id="predictionSeconds" min="0" max="59" placeholder="0">
+        </div>
+      </div>
+      <p id="predictionHelper" class="prediction-helper">Take a guess - there's no right answer!</p>
+      <button id="startWithPrediction" class="start-btn full-width">Start Focus Session</button>
+    </div>
+  </div>
+  
+  <!-- Estimation Modal -->
+  <div id="estimationModal" class="info-modal">
+    <div class="info-content">
+      <h2 id="estimationTitle">Focus Lost</h2>
+      <p id="actualDurationText" class="actual-duration-text">Timer ran for: 00:00</p>
+      <p id="estimationQuestion">When do you think you actually lost focus?</p>
+      <p id="estimationHelper" class="estimation-helper">Estimate how long you were truly focused</p>
+      <div class="time-input-group">
+        <div class="time-input-wrapper">
+          <label id="estimationMinutesLabel">Minutes</label>
+          <input type="number" id="estimationMinutes" min="0" placeholder="0">
+        </div>
+        <div class="time-input-wrapper">
+          <label id="estimationSecondsLabel">Seconds</label>
+          <input type="number" id="estimationSeconds" min="0" max="59" placeholder="0">
+        </div>
+      </div>
+      <div class="button-row">
+        <button id="confirmEstimation" class="start-btn flex-1">Confirm</button>
+        <button id="skipEstimation" class="info-btn flex-1">Skip</button>
+      </div>
     </div>
   </div>
   
