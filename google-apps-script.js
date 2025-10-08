@@ -65,16 +65,51 @@ function doGet(e) {
 }
 
 /**
- * Handle POST requests (fallback for direct POST calls)
+ * Handle POST requests from the Chrome extension
  */
 function doPost(e) {
-  return ContentService
-    .createTextOutput(JSON.stringify({
-      success: true,
-      message: 'POST endpoint working!',
-      timestamp: new Date().toISOString()
-    }))
-    .setMimeType(ContentService.MimeType.JSON);
+  try {
+    // Log the incoming request
+    console.log('=== INCOMING POST REQUEST ===');
+    console.log('Timestamp:', new Date().toISOString());
+    console.log('Raw post data:', e.postData.contents);
+
+    // Parse the incoming data
+    const data = JSON.parse(e.postData.contents);
+
+    // Log parsed data
+    console.log('Parsed data keys:', Object.keys(data));
+    console.log('Number of sessions:', data.sessions ? data.sessions.length : 'No sessions');
+    console.log('Participant ID:', data.participantId);
+
+    // Basic validation
+    if (!data.sessions || !Array.isArray(data.sessions)) {
+      return createResponse(false, 'Invalid data format: sessions array required');
+    }
+
+    if (!data.participantId) {
+      return createResponse(false, 'Invalid data format: participantId required');
+    }
+
+    // Process each session
+    const results = [];
+    for (const session of data.sessions) {
+      const result = addSessionToSheet(session, data);
+      results.push(result);
+    }
+
+    // Log the submission
+    console.log(`Processed ${results.length} sessions for participant ${data.participantId}`);
+
+    return createResponse(true, `Successfully processed ${results.length} sessions`, {
+      sessionsProcessed: results.length,
+      participantId: data.participantId
+    });
+
+  } catch (error) {
+    console.error('Error processing POST data:', error);
+    return createResponse(false, `Error processing data: ${error.message}`);
+  }
 }
 
 

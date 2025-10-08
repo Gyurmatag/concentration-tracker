@@ -12,7 +12,7 @@ class ConcentrationTracker {
     this.actualEndTime = null;
     
     // Google Apps Script Web App URL
-    this.googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwI2xoqQ1JN_hCsYIMTfgDLK9Q-nl0JktQo7uWFa8OaDD35Ix2069ws6Rr5InLQXkLYOw/exec';
+    this.googleScriptUrl = 'https://script.google.com/macros/s/AKfycbzVPaoMr1h6x1EP_9ddHCsTjzSW0JNwsyVq7c5UVYq1A-BUU_52H0cu_zb8Sjxh-7iBtg/exec';
     
     this.loadI18n().then(() => {
       this.initializeElements();
@@ -608,11 +608,14 @@ class ConcentrationTracker {
     console.log('Session data:', JSON.stringify(this.sessionData, null, 2));
     console.log('Full payload:', JSON.stringify(dataToSend, null, 2));
     
-    // Use GET request with data in URL (Google Apps Script POST issue workaround)
-    const encodedData = encodeURIComponent(JSON.stringify(dataToSend));
-    const response = await fetch(`${this.googleScriptUrl}?data=${encodedData}`, {
-      method: 'GET',
-      mode: 'cors'
+    // Use POST request with proper JSON body (correct approach)
+    const response = await fetch(this.googleScriptUrl, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dataToSend)
     });
     
     if (!response.ok) {
