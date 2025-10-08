@@ -1,6 +1,6 @@
 # Concentration Tracker
 
-A Chrome extension for tracking focus time as part of a TED and Shiwaforce collaboration for community science research on attention and concentration.
+A Chrome extension for tracking focus time as part of a TED community science research project on attention and concentration.
 
 ## Features
 
@@ -22,16 +22,14 @@ A Chrome extension for tracking focus time as part of a TED and Shiwaforce colla
 
 ## About the Experiment
 
-This extension is part of a community science experiment conducted as a collaboration between TED and Shiwaforce to understand how long people can maintain focus on tasks without getting distracted. The data collected helps researchers understand attention patterns and could lead to better productivity tools and insights about digital wellness.
+This extension is part of a community science experiment conducted by TED to understand how long people can maintain focus on tasks without getting distracted. The data collected helps researchers understand attention patterns and could lead to better productivity tools and insights about digital wellness.
 
-### Collaboration Partners
+### About TED
 
 - **TED**: Bringing expertise in ideas, community science, and research methodology
-- **Shiwaforce**: Providing digital innovation capabilities and technical implementation
 
-Learn more about our partners:
+Learn more about TED:
 - [TED](https://www.ted.com/) - Ideas worth spreading
-- [Shiwaforce](https://www.shiwaforce.com/) - Digital transformation and innovation
 
 ## Privacy
 

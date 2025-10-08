@@ -7,13 +7,15 @@
  * 3. Replace the default code with this code
  * 4. Create a new Google Sheet for data collection
  * 5. Update the SPREADSHEET_ID in the code below
- * 6. Deploy as a web app with "Anyone" access
+ * 6. Deploy as a web app with "Anyone with Google account" access
  * 7. Copy the web app URL to the Chrome extension
  */
 
 // CONFIGURATION - UPDATED WITH YOUR VALUES
-const SPREADSHEET_ID = '1ff56G3Mk1gsOpcLCTHc9l_7RlhYxnAdiTvxCyHKLpqk'; // Your Google Sheet ID
+const SPREADSHEET_ID = '1vnMQkdeGkG9z0wiud0K9nUyvk5w8uimRposlvFyecS4'; // Your Google Sheet ID
 const SHEET_NAME = 'Concentration Data'; // Name of the sheet tab
+
+// Basic configuration
 
 /**
  * Handle GET requests (required for web app deployment)
@@ -63,42 +65,18 @@ function doGet(e) {
 }
 
 /**
- * Main function to handle POST requests from the Chrome extension
+ * Handle POST requests (fallback for direct POST calls)
  */
 function doPost(e) {
-  try {
-    // Parse the incoming data
-    const data = JSON.parse(e.postData.contents);
-    
-    // Validate the data
-    if (!data.sessions || !Array.isArray(data.sessions)) {
-      return createResponse(false, 'Invalid data format: sessions array required');
-    }
-    
-    if (!data.participantId) {
-      return createResponse(false, 'Invalid data format: participantId required');
-    }
-    
-    // Process each session
-    const results = [];
-    for (const session of data.sessions) {
-      const result = addSessionToSheet(session, data);
-      results.push(result);
-    }
-    
-    // Log the submission
-    console.log(`Processed ${results.length} sessions for participant ${data.participantId}`);
-    
-    return createResponse(true, `Successfully processed ${results.length} sessions`, {
-      sessionsProcessed: results.length,
-      participantId: data.participantId
-    });
-    
-  } catch (error) {
-    console.error('Error processing data:', error);
-    return createResponse(false, `Error processing data: ${error.message}`);
-  }
+  return ContentService
+    .createTextOutput(JSON.stringify({
+      success: true,
+      message: 'POST endpoint working!',
+      timestamp: new Date().toISOString()
+    }))
+    .setMimeType(ContentService.MimeType.JSON);
 }
+
 
 /**
  * Add a single session to the Google Sheet
@@ -107,25 +85,22 @@ function addSessionToSheet(session, metadata) {
   try {
     const sheet = getOrCreateSheet();
     
-    // Prepare the row data
-    const rowData = [
-      new Date().toISOString(), // timestamp
-      generateSessionId(session, metadata.participantId), // session_id
-      session.date, // date
-      formatTime(session.startTime), // start_time
-      formatTime(session.endTime), // end_time
-      Math.floor(session.duration / 1000), // duration_seconds
-      formatDuration(session.duration), // duration_formatted
-      session.predictedDuration ? Math.floor(session.predictedDuration / 1000) : '', // predicted_duration_seconds
-      session.predictedDuration ? formatDuration(session.predictedDuration) : '', // predicted_duration_formatted
-      formatTime(session.detectionTime), // detection_time (when user detected focus loss)
-      session.estimatedFocusDuration !== null && session.estimatedFocusDuration !== undefined ? Math.floor(session.estimatedFocusDuration / 1000) : '', // estimated_focus_seconds
-      session.estimatedFocusDuration !== null && session.estimatedFocusDuration !== undefined ? formatDuration(session.estimatedFocusDuration) : '', // estimated_focus_formatted
-      metadata.participantId, // participant_id
-      metadata.browserInfo || 'Unknown', // browser_info
-      metadata.experimentVersion || '1.0', // experiment_version
-      metadata.timestamp || new Date().toISOString() // submission_timestamp
-    ];
+        // Prepare the row data - matching your exact column structure
+        const rowData = [
+          new Date().toISOString(), // timestamp
+          generateSessionId(session, metadata.participantId), // session_id
+          session.date, // date
+          session.startTime, // start_time (timestamp)
+          session.endTime, // end_time (timestamp)
+          Math.floor(session.duration / 1000), // duration_seconds
+          session.predictedDuration ? Math.floor(session.predictedDuration / 1000) : '', // predicted_duration_seconds
+          session.detectionTime, // detection_time (timestamp when user detected focus loss)
+          session.estimatedFocusDuration !== null && session.estimatedFocusDuration !== undefined ? Math.floor(session.estimatedFocusDuration / 1000) : '', // estimated_focus_seconds
+          metadata.participantId, // participant_id
+          metadata.browserInfo || 'Unknown', // browser_info
+          metadata.experimentVersion || '1.0', // experiment_version
+          metadata.timestamp || new Date().toISOString() // submission_timestamp
+        ];
     
     // Add the row to the sheet
     sheet.appendRow(rowData);
@@ -149,25 +124,22 @@ function getOrCreateSheet() {
     // Create the sheet with headers
     sheet = spreadsheet.insertSheet(SHEET_NAME);
     
-    // Add headers
-    const headers = [
-      'Timestamp',
-      'Session ID',
-      'Date',
-      'Start Time',
-      'End Time',
-      'Duration (seconds)',
-      'Duration (formatted)',
-      'Predicted Duration (seconds)',
-      'Predicted Duration (formatted)',
-      'Detection Time',
-      'Estimated Focus (seconds)',
-      'Estimated Focus (formatted)',
-      'Participant ID',
-      'Browser Info',
-      'Experiment Version',
-      'Submission Timestamp'
-    ];
+        // Add headers - matching your exact column structure
+        const headers = [
+          'Timestamp',
+          'Session ID',
+          'Date',
+          'Start Time (timestamp)',
+          'End Time (timestamp)',
+          'Duration (seconds)',
+          'Predicted Duration (seconds)',
+          'Detection Time (timestamp)',
+          'Estimated Focus (seconds)',
+          'Participant ID',
+          'Browser Info',
+          'Experiment Version',
+          'Submission Timestamp'
+        ];
     
     sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
     
@@ -254,7 +226,7 @@ function doOptions(e) {
  */
 function testSetup() {
   console.log('Testing Google Apps Script setup...');
-  
+
   // Test data
   const testData = {
     sessions: [{
@@ -271,16 +243,50 @@ function testSetup() {
     experimentVersion: '1.0',
     timestamp: new Date().toISOString()
   };
-  
-  // Simulate a POST request
+
+  // Simulate a GET request with data parameter
   const mockEvent = {
-    postData: {
-      contents: JSON.stringify(testData)
+    parameter: {
+      data: JSON.stringify(testData)
     }
   };
-  
-  const result = doPost(mockEvent);
+
+  const result = doGet(mockEvent);
   console.log('Test result:', result.getContent());
-  
+
   return result;
+}
+
+/**
+ * Simple test to check sheet access
+ */
+function testSheetAccess() {
+  try {
+    console.log('Testing sheet access...');
+    console.log('Spreadsheet ID:', SPREADSHEET_ID);
+    console.log('Sheet Name:', SHEET_NAME);
+    
+    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    console.log('Spreadsheet opened successfully');
+    console.log('Spreadsheet name:', spreadsheet.getName());
+    
+    let sheet = spreadsheet.getSheetByName(SHEET_NAME);
+    if (!sheet) {
+      console.log('Sheet not found, creating it...');
+      sheet = spreadsheet.insertSheet(SHEET_NAME);
+      console.log('Sheet created successfully');
+    } else {
+      console.log('Sheet found:', sheet.getName());
+    }
+    
+    // Test adding a simple row
+    const testRow = [new Date().toISOString(), 'TEST_ROW', 'Test Data'];
+    sheet.appendRow(testRow);
+    console.log('Test row added successfully');
+    
+    return 'SUCCESS: Sheet access working';
+  } catch (error) {
+    console.error('Sheet access error:', error);
+    return 'ERROR: ' + error.message;
+  }
 }

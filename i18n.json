@@ -56,7 +56,7 @@
   },
   "infoModal": {
     "title": "Fókuszkövetés",
-    "welcome": "Üdv a fókuszkövetésről, ha úgy tetszik a figyelem figyelésre létrehozott közösségi tudományos kísérletben, amely a TEDxDanubia és a Shiwaforce együttműködésében jött létre.",
+    "welcome": "Üdv a fókuszkövetésről, ha úgy tetszik a figyelem figyelésre létrehozott közösségi tudományos kísérletben, amely a TEDxDanubia kezdeményezésében jött létre.",
     "sections": {
       "whatIsThis": {
         "title": "Mire jó ez?",
@@ -93,7 +93,7 @@
       },
       "collaboration": {
         "title": "Az együttműködésről",
-        "description": "A közösségi tudományos kísérlet a TEDxDanubia ötlete alapján, a nyilvánosság bevonásával és a Shiwaforce digitális innovációjának eredményeként jöhetett létre. "
+        "description": "A közösségi tudományos kísérlet a TEDxDanubia ötlete alapján, a nyilvánosság bevonásával jöhetett létre. "
       }
     },
     "footer": "Köszönjük, hogy részt veszel ebben a közösségi tudományos kísérletben."

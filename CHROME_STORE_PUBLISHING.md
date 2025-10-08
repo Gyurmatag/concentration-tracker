@@ -29,10 +29,10 @@ This guide will help you publish the Concentration Tracker extension to the Chro
 
 #### **Basic Information:**
 - **Name:** `Concentration Tracker`
-- **Summary:** `Track your focus time for the TED and Shiwaforce concentration experiment`
+- **Summary:** `Track your focus time for the TED concentration experiment`
 - **Description:** 
 ```
-A Chrome extension for tracking focus time as part of a TED and Shiwaforce collaboration for community science research on attention and concentration.
+A Chrome extension for tracking focus time as part of a TED community science research project on attention and concentration.
 
 Features:
 • Start/Stop Timer: Track your focus sessions with a simple start/stop interface
@@ -42,7 +42,7 @@ Features:
 • Beautiful UI: Modern TED-style design with clean, professional appearance
 
 About the Experiment:
-This extension is part of a community science experiment conducted as a collaboration between TED and Shiwaforce to understand how long people can maintain focus on tasks without getting distracted. The data collected helps researchers understand attention patterns and could lead to better productivity tools and insights about digital wellness.
+This extension is part of a community science experiment conducted by TED to understand how long people can maintain focus on tasks without getting distracted. The data collected helps researchers understand attention patterns and could lead to better productivity tools and insights about digital wellness.
 
 Privacy:
 • All data is collected anonymously
@@ -52,7 +52,6 @@ Privacy:
 
 Collaboration Partners:
 • TED: Bringing expertise in ideas, community science, and research methodology
-• Shiwaforce: Providing digital innovation capabilities and technical implementation
 ```
 
 #### **Category:**
@@ -191,4 +190,4 @@ https://chrome.google.com/webstore/detail/[EXTENSION_ID]
 - [ ] All information reviewed
 - [ ] Ready to submit!
 
-Once published, your TED × Shiwaforce Concentration Tracker will be available for download via direct link! 🎯
+Once published, your TED Concentration Tracker will be available for download via direct link! 🎯
